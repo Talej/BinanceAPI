@@ -15,7 +15,7 @@ class Curl {
     }
 
     public function delete($url, $vars = array()) {
-        return $this->request('DELETE', $url, $vars);
+        return $this->request('DELETE', $url, http_build_query($vars));
     }
 
     public function error() {
@@ -31,11 +31,11 @@ class Curl {
     }
 
     public function post($url, $vars = array()) {
-        return $this->request('POST', $url, $vars);
+        return $this->request('POST', $url, http_build_query($vars));
     }
 
     public function put($url, $vars = array()) {
-        return $this->request('PUT', $url, $vars);
+        return $this->request('PUT', $url, http_build_query($vars));
     }
 
     protected function request($method, $url, $vars = array()) {
@@ -58,7 +58,6 @@ class Curl {
             $headers[] = $key.': '.$value;
         }
         curl_setopt($handle, CURLOPT_HTTPHEADER, $headers);
-
         # Determine the request method and set the correct CURL option
         switch ($method) {
             case 'GET':
@@ -100,7 +99,6 @@ class CurlResponse {
         $pattern = '#HTTP/\d\.\d.*?$.*?\r\n\r\n#ims';
         preg_match_all($pattern, $response, $matches);
         $headers = explode("\r\n", str_replace("\r\n\r\n", '', array_pop($matches[0])));
-
         # Extract the version and status from the first header
         $version_and_status = array_shift($headers);
         preg_match('#HTTP/(\d\.\d)\s(\d\d\d)\s(.*)#', $version_and_status, $matches);

@@ -35,7 +35,7 @@
     require_once('binanceapi.php');
 
     // Create the Binance API object by passing your API key & secret
-    $api = new BinanceAPI('<APIKEY>', '<APISecret>');
+    $api = new BinanceAPI('<APIKey>', '<APISecret>');
 
 
     // EXAMPLE - Get latest price of a symbol
@@ -51,7 +51,7 @@
     dump('order', $result, $api->getErrors());
 
     // EXAMPLE - Place a MARKET order
-    $result = $api->order('LTCBTC', 'BUY', 'MARKET', 'GTC', 10, 0.1);
+    $result = $api->order('LTCBTC', 'BUY', 'MARKET', NULL, 10, NULL);
     dump('order', $result, $api->getErrors());
 
     // EXAMPLE - Get order status
