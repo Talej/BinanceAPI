@@ -35,7 +35,7 @@
     require_once('binanceapi.php');
 
     // Create the Binance API object by passing your API key & secret
-    $api = new BinanceAPI('jSJ5uBIBPhqe97COWXxfV58Dqktc5ZeiVqgpMFWjGGBRATQuBVkmrPP1GMoorzrB', 'W467MZlMLBzQcQlLLMdzsS7NrPSlhMLyY1M6bN6At5x5x59L8CDIGFOO5iyqL4Ko');
+    $api = new BinanceAPI('<APIKEY>', '<APISecret>');
 
 
     // EXAMPLE - Get latest price of a symbol
